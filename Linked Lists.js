@@ -34,7 +34,7 @@ class LinkedList {
             current.next = node;
         }
         this.size++;
-    };
+    }
 
     // Insert at index
 
@@ -64,31 +64,51 @@ class LinkedList {
 
         node.next = current;
         previous.next = node;
-        this.size++
+        this.size++;
     }
 
     // Get value from index
     getAt(index) {
         let current = this.head;
-        let count = 0
+        let count = 0;
 
-        while(current) {
-            if(count == index){
-                console.log("current.data: ", current.data)
+        while (current) {
+            if (count == index) {
+                current.data;
+                console.log("current.data: ", current.data);
             }
-            count++
+            count++;
             current = current.next;
         }
-        return null
-
+        return null;
     }
 
+    // remove node by index
+    removeAt(index) {
+        if (index > 0 && index > this.size) {
+            return;
+        }
+        let current = this.head;
+        let previous;
+        let count = 0;
 
+        if (index == 0) {
+            this.head = current.next;
+        } else {
+            while (count < index) {
+                count++;
+                previous = current;
+                current = current.next;
+            }
+            previous.next = current.next;
+        }
+        this.size--;
+    }
 
-
-
-
-
+    clearList() {
+        this.head = null;
+        this.size = 0;
+    }
 
     // Print list data
     printListData() {
@@ -101,13 +121,21 @@ class LinkedList {
 }
 
 const linkedL = new LinkedList();
-linkedL.insertFirst(100);
-linkedL.insertFirst(200);
 linkedL.insertFirst(300);
+linkedL.insertFirst(200);
+linkedL.insertFirst(100);
 linkedL.insertLast(400);
 linkedL.insertAt(600, 0);
 linkedL.insertAt(500, 10);
-linkedL.getAt(0)
+linkedL.insertAt(501, 10);
+linkedL.insertAt(502, 10);
+linkedL.insertAt(503, 10);
+linkedL.insertAt(504, 10);
+linkedL.insertAt(505, 10);
+linkedL.insertAt(506, 10);
+linkedL.getAt(0);
 
+// linkedL.clearList()
+// linkedL.removeAt(7);
 
 linkedL.printListData();
