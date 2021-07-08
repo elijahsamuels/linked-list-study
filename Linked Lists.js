@@ -105,10 +105,33 @@ class LinkedList {
         this.size--;
     }
 
+    // remove the first node of the list
+    removeFirst() {
+        let current = this.head;
+        this.head = current.next
+    }
+    
+    // remove the last node of the list
+    removeLast() {
+
+    }
+
+    // sort the nodes by ascending value
+    sortNodesByValueAscending() {
+
+    }
+
+    // sort the nodes by descending value
+    sortNodesByValueDescending() {
+
+    }
+
     clearList() {
         this.head = null;
         this.size = 0;
     }
+
+    
 
     // Print list data
     printListData() {
@@ -134,6 +157,7 @@ linkedL.insertAt(504, 10);
 linkedL.insertAt(505, 10);
 linkedL.insertAt(506, 10);
 linkedL.getAt(0);
+linkedL.removeFirst();
 
 // linkedL.clearList()
 // linkedL.removeAt(7);
