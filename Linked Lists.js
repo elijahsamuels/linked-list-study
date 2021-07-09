@@ -1,165 +1,171 @@
+
 class Node {
-    constructor(data, next = null) {
+    constructor(data, nextNode) {
         this.data = data;
-        this.next = next;
+        this.nextNode = nextNode || null;
     }
 }
 
 // const node1 = new Node(100);
-// console.log(node1); // Node { data: 100, next: null }
+// console.log(node1); // Node { data: 100, nextNode: null }
 
 class LinkedList {
     constructor() {
-        this.head = null;
+        this.headNode = null;
         this.size = 0;
     }
 
-    // Insert first node object
-    insertFirst = (data) => {
-        this.head = new Node(data, this.head);
+    // Add first node object
+
+    addFirstNode = (data) => {
+        this.headNode = new Node(data, this.headNode);
         this.size++;
     };
 
-    insertLast(data) {
+    addLastNode = (data) => {
         let node = new Node(data);
-        let current;
+        let currentNode;
 
-        if (!this.head) {
-            this.head = node;
+        if (!this.headNode) {
+            this.headNode = node;
         } else {
-            current = this.head;
-            while (current.next) {
-                current = current.next;
+            currentNode = this.headNode;
+            while (currentNode.nextNode) {
+                currentNode = currentNode.nextNode;
             }
-            current.next = node;
+            currentNode.nextNode = node;
         }
         this.size++;
     }
 
     // Insert at index
-
-    insertAt(data, index) {
+    insertNodeAt = (data, index) => {
         // if index is out of range
         if (index > 0 && index > this.size) {
-            return this.insertLast(data); // if the index is out of range, add it to the end
+            return this.addLastNode(data); // if the index is out of range, add it to the end
         }
 
-        // if it's the first index, make it the head.
+        // if it's the first index, make it the headNode.
         if (index === 0) {
-            return this.insertFirst(data);
+            return this.addFirstNode(data);
         }
 
         const node = new Node(data);
-        let current;
+        let currentNode;
         let previous;
 
-        current = this.head;
+        currentNode = this.headNode;
         let count = 0;
 
         while (count < index) {
-            previous = current; // node before index
+            previous = currentNode; // node before index
             count++;
-            current = current.next; // node after index
+            currentNode = currentNode.nextNode; // node after index
         }
 
-        node.next = current;
-        previous.next = node;
+        node.nextNode = currentNode;
+        previous.nextNode = node;
         this.size++;
     }
 
     // Get value from index
-    getAt(index) {
-        let current = this.head;
+    getNodeAt = (index) => {
+        let currentNode = this.headNode;
         let count = 0;
 
-        while (current) {
+        while (currentNode) {
             if (count == index) {
-                current.data;
-                console.log("current.data: ", current.data);
+                currentNode.data;
+                console.log("currentNode.data: ", currentNode.data);
             }
             count++;
-            current = current.next;
+            currentNode = currentNode.nextNode;
         }
         return null;
     }
 
     // remove node by index
-    removeAt(index) {
+    removeNodeFrom = (index) => {
         if (index > 0 && index > this.size) {
             return;
         }
-        let current = this.head;
+        let currentNode = this.headNode;
         let previous;
         let count = 0;
 
         if (index == 0) {
-            this.head = current.next;
+            this.headNode = currentNode.nextNode;
         } else {
             while (count < index) {
                 count++;
-                previous = current;
-                current = current.next;
+                previous = currentNode;
+                currentNode = currentNode.nextNode;
             }
-            previous.next = current.next;
+            previous.nextNode = currentNode.nextNode;
         }
         this.size--;
     }
 
     // remove the first node of the list
-    removeFirst() {
-        let current = this.head;
-        this.head = current.next
+    removeFirstNode() {
+        let currentNode = this.headNode;
+        this.headNode = currentNode.nextNode;
     }
-    
+
     // remove the last node of the list
-    removeLast() {
+    removeLastNode() {
+        let currentNode = this.headNode;
 
-    }
-
-    // sort the nodes by ascending value
-    sortNodesByValueAscending() {
-
-    }
-
-    // sort the nodes by descending value
-    sortNodesByValueDescending() {
-
+        if (currentNode.nextNode != null) {
+            currentNode = currentNode.nextNode;
+        } else {
+            currentNode = currentNode.nextNode;
+        }
     }
 
     clearList() {
-        this.head = null;
+        this.headNode = null;
         this.size = 0;
     }
 
-    
-
     // Print list data
+    
     printListData() {
-        let current = this.head;
-        while (current) {
-            console.log(current.data);
-            current = current.next;
+        let currentNode = this.headNode;
+        while (currentNode) {
+
+            console.log(currentNode.data);
+            console.log(currentNode.nextNode);
+            console.log(linkedListExample.size);
+
+            currentNode = currentNode.nextNode;
         }
     }
+
+
 }
 
-const linkedL = new LinkedList();
-linkedL.insertFirst(300);
-linkedL.insertFirst(200);
-linkedL.insertFirst(100);
-linkedL.insertLast(400);
-linkedL.insertAt(600, 0);
-linkedL.insertAt(500, 10);
-linkedL.insertAt(501, 10);
-linkedL.insertAt(502, 10);
-linkedL.insertAt(503, 10);
-linkedL.insertAt(504, 10);
-linkedL.insertAt(505, 10);
-linkedL.insertAt(506, 10);
-linkedL.getAt(0);
-linkedL.removeFirst();
+const linkedListExample = new LinkedList();
+linkedListExample.addFirstNode(300);
+linkedListExample.addFirstNode(200);
+linkedListExample.addFirstNode(100);
 
-// linkedL.clearList()
-// linkedL.removeAt(7);
+linkedListExample.addLastNode(400);
 
-linkedL.printListData();
+// linkedListExample.insertNodeAt(600, 0);
+// linkedListExample.insertNodeAt(500, 10);
+// linkedListExample.insertNodeAt(501, 10);
+// linkedListExample.insertNodeAt(502, 10);
+// linkedListExample.insertNodeAt(503, 10);
+// linkedListExample.insertNodeAt(504, 10);
+// linkedListExample.insertNodeAt(505, 10);
+// linkedListExample.insertNodeAt(506, 10);
+// linkedListExample.getNodeAt(0);
+// linkedListExample.removeFirstNode();
+// linkedListExample.insertNodeAt(600, 11);
+// linkedListExample.removeLastNode();
+
+// linkedListExample.clearList()
+// linkedListExample.removeNodeFrom(7);
+
+linkedListExample.printListData();
